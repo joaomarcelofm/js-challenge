@@ -14,9 +14,9 @@
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 
-  ctx.strokeStyle = 'BADA55';
+  ctx.strokeStyle = '#BADA55';
   ctx.lineJoin = 'round';
-  ctx.lineCap = 'roind';
+  ctx.lineCap = 'round';
 
   let brushOn = false;
   let lastX = 0;
@@ -25,9 +25,21 @@
   function draw(e) {
     if (!brushOn) return;
     console.log(e)
+
+    ctx.beginPath();
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(e.offsetX, e.offsetY);
+    ctx.stroke();
+    [lastX, lastY] = [e.offsetX, e.offsetY];
   }
 
-  canvas.addEventListener('mousedown', () => brushOn = true)
+
+  canvas.addEventListener('mousedown', (e) => {
+    brushOn = true;
+    [lastX, lastY] = [e.offsetX, e.offsetY]
+  })
+
+
   canvas.addEventListener('mouseup', () => brushOn = false)
   canvas.addEventListener('mouseout', () => brushOn = false)
   canvas.addEventListener('mousemove', draw)
