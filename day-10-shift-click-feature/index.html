@@ -85,31 +85,42 @@
 
 <script>
   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-  let shift = false;
+  // let shift = false;
 
-  window.addEventListener('keydown', function (e) {
-    if (e.keyCode === 16) {
-      shift = true;
+  // window.addEventListener('keydown', function (e) {
+  //   if (e.keyCode === 16) {
+  //     shift = true;
+  //   }
+  // });
+
+  // window.addEventListener('keyup', function (e) {
+  //   if (e.keyCode === 16) {
+  //     shift = false;
+  //   }
+  // });
+
+
+  let lastChecked
+
+  function handleCheck(e) {
+    let inBetween = false;
+
+    if(e.shiftKey && this.checked) {
+      checkboxes.forEach(checkbox => {
+        console.log(checkbox)
+        if(checkbox === this || checkbox === lastChecked) {
+          inBetween = !inBetween
+        }
+
+        if(inBetween) {
+          checkbox.checked = true;
+        }
+      });
     }
-  });
+    lastChecked = this;
+  }
 
-  window.addEventListener('keyup', function (e) {
-    if (e.keyCode === 16) {
-      shift = false;
-    }
-  });
-
-
-// checkboxes.addEventListener('change', function() {
-//   if(this.checked) {
-//         // Checkbox is checked..
-
-
-//       } else {
-//         // Checkbox is not checked..
-//       }
-//     });
-
+  checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck))
   </script>
 </body>
 </html>
