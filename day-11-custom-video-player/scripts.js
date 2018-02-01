@@ -1,9 +1,22 @@
+// Controlls
+
 const player = document.querySelector('.player');
-const viewer = player.querySelector('.viewer');
+const video = player.querySelector('.player__video');
 
 const progress = player.querySelector('.progress');
 const progressBar = player.querySelector('.progress__filled');
 
-const togglePlay = player.querySelector('.toggle');
+const togglePlayer = player.querySelector('.toggle');
 const ranges = player.querySelector('.player__slider')
 const skipButtons = player.querySelectorAll('data-skip');
+
+// Functions
+
+function togglePlay() {
+  video.paused ? video.play() : video.pause()
+}
+
+// Actions
+
+video.addEventListener('click', togglePlay);
+togglePlayer.addEventListener('click', togglePlay);
