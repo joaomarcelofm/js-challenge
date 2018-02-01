@@ -13,7 +13,15 @@ const skipButtons = player.querySelectorAll('data-skip');
 // Functions
 
 function togglePlay() {
-  video.paused ? video.play() : video.pause()
+  // video.paused ? video.play() : video.pause()
+
+  if(video.paused) {
+    video.play();
+    togglePlayer.innerText = '❚ ❚';
+  } else {
+    video.pause();
+    togglePlayer.innerText = '►';
+  }
 }
 
 // Actions
