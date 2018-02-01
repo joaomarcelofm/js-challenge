@@ -13,18 +13,17 @@ const skipButtons = player.querySelectorAll('data-skip');
 // Functions
 
 function togglePlay() {
-  // video.paused ? video.play() : video.pause()
+  video.paused ? video.play() : video.pause()
+}
 
-  if(video.paused) {
-    video.play();
-    togglePlayer.innerText = '❚ ❚';
-  } else {
-    video.pause();
-    togglePlayer.innerText = '►';
-  }
+function toggleButton() {
+  video.paused ? togglePlayer.innerText = '►' : togglePlayer.innerText = '❚ ❚'
 }
 
 // Actions
 
 video.addEventListener('click', togglePlay);
 togglePlayer.addEventListener('click', togglePlay);
+
+video.addEventListener('play', toggleButton);
+video.addEventListener('pause', toggleButton);
