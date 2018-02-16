@@ -8,6 +8,16 @@
 </head>
 <body>
 <script>
+  const pressedKeys = []
+  const secretCombination = 'cornify'
+
+  window.addEventListener('keyup', (e) => {
+    pressedKeys.push(e.key)
+    pressedKeys.splice(-secretCombination.length - 1, pressedKeys.length - secretCombination.length);
+  if (pressedKeys.join('').includes(secretCombination)) {
+    cornify_add();
+  }
+  });
 </script>
 </body>
 </html>
